@@ -1,17 +1,12 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 import Twit from 'twit';
 import natural from 'natural';
 
-import executableSchema from './graphql/executableSchema';
-
-var T = new Twit({
-  consumer_key:         'np5qK4gvGPPhj8WxZ77kkcsHB',
-  consumer_secret:      '2xIhrUORakh6RtG6PIGMJY0T0Lwy3NZRQn8JzZS9lFSSeD4doK',
-  access_token:         '902026514073395200-wPiitZ263vgwothAIia27ZvgP9aKj9N',
-  access_token_secret:  '9tkEBzY9QpMeFUw5mQ5qGwoEReVuYgZ3vwrhbiutFj3ZE',
-  timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
+const T = new Twit({
+  consumer_key: 'np5qK4gvGPPhj8WxZ77kkcsHB',
+  consumer_secret: '2xIhrUORakh6RtG6PIGMJY0T0Lwy3NZRQn8JzZS9lFSSeD4doK',
+  access_token: '902026514073395200-wPiitZ263vgwothAIia27ZvgP9aKj9N',
+  access_token_secret: '9tkEBzY9QpMeFUw5mQ5qGwoEReVuYgZ3vwrhbiutFj3ZE',
+  timeout_ms: 60*1000, // optional HTTP request timeout to apply to all requests.
 });
 
 const classifier = new natural.BayesClassifier();
@@ -26,45 +21,26 @@ classifier.addDocument('can you play some new music?', 'music');
 
 classifier.train();
 
-export const app = express();
+let stream = T.stream('statuses/filter', { track: '@dxlabtest', language: 'en' })
 
-app.use('/graphql', bodyParser.json(), graphqlExpress({
-  schema: executableSchema,
-}));
+stream.on('tweet', function (tweet) {
+  console.log('tweet');
 
-app.use('/graphiql', graphiqlExpress({
-  endpointURL: './graphql',
-}));
+  if ((tweet.text.substring(0,2)!='RT')
+    &&(tweet.text.includes('#suggest'))) {
 
-app.get('/', (req, res) => {
+    console.log('ACTION: '+tweet.text);
+    var resp = 'Thanks @'+tweet.user.screen_name+' for the request.';
+    T.post('statuses/update', { status: resp }, function(err, data, response) {
 
-	var stream = T.stream('statuses/filter', { track: '@dxlabtest', language: 'en' })
+      console.log(classifier.classify('did the tests pass?')); // -> software
 
-	stream.on('tweet', function (tweet) {
-		if ((tweet.text.substring(0,2)!="RT")
-			&&(tweet.text.includes("#suggest"))) {
-
-			console.log("ACTION: "+tweet.text);
-			var resp = 'Thanks @'+tweet.user.screen_name+' for the request.';
-			T.post('statuses/update', { status: resp }, function(err, data, response) {
-
-        console.log(classifier.classify('did the tests pass?')); // -> software
-
-				console.log("REPLIED: "+resp);
-			});
-		//	T.get('search/tweets', { q : "@"+tweet.user.screen_name, count: 20 }, function(err, data, response) {
-		//		console.log(err);
-		//	});
-		} else {
-  			console.log("DO NOT ACTION: "+tweet.text+" FROM @"+tweet.user.screen_name);
-  		}
-	})
-
-  res.send('Hello World!');
+      console.log('REPLIED: '+resp);
+    });
+    // T.get('search/tweets', { q : '@'+tweet.user.screen_name, count: 20 }, function(err, data, response) {
+    //  console.log(err);
+    // });
+  } else {
+    console.log(`DO NOT ACTION: ${tweet.text} FROM @${tweet.user.screen_name}`);
+  }
 });
-
-app.listen(3000, () => {
-  console.log('Listening on port 3000');
-});
-
-// export default app;
