@@ -21,7 +21,7 @@ classifier.addDocument('can you play some new music?', 'music');
 
 classifier.train();
 
-let stream = T.stream('statuses/filter', { track: '@dxlabtest', language: 'en' })
+let stream = T.stream('statuses/filter', { track: '@dxlabtest', language: 'en' });
 
 stream.on('tweet', function (tweet) {
   console.log('tweet');

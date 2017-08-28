@@ -15,14 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "@types/body-parser": "0.0.33",
-    "aws-sdk": "^2.7.1",
-    "aws-serverless-express": "3.0.2",
     "axios": "^0.16.2",
     "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "graphql": "^0.8.1",
-    "graphql-server-express": "^0.4.3",
-    "graphql-tools": "^0.8.1",
     "lodash": "^4.17.1",
     "natural": "^0.5.4",
     "twit": "^2.2.9"
