@@ -100,7 +100,7 @@ stream.on('limit', function (limitMessage) {
 
 // we got one! 
 stream.on('tweet', function (tweet) {
-  consile.log('--------------------------------------------------');
+  console.log('--------------------------------------------------');
   console.log('tweet '+Date.now());
 
   // check it isn't a re-tweet and does have the correct hash tag
