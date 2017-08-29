@@ -20,26 +20,76 @@ classifier.addDocument('i need a new power supply.', 'hardware');
 classifier.addDocument('can you play some new music?', 'music');
 
 classifier.train();
+///////////////////////////////////////////////////////////////////////////
+
 
 let stream = T.stream('statuses/filter', { track: '@dxlabtest', language: 'en' });
 
+stream.on('connect', function (request) {
+  console.log('connection requested '+Date.now());
+});
+
+stream.on('disconnect', function (disconnectMessage) {
+  console.log('_+_+_ disconnect _+_+_ '+disconnectMessage); 
+});
+
+stream.on('connected', function (response) {
+  console.log('CONNECTED! '+Date.now()); 
+});
+
+stream.on('reconnect', function (request, response, connectInterval) {
+  console.log('Re-connected... '+Date.now()); 
+});
+
+stream.on('warning', function (warning) {
+  console.log('###WARNING!### '+warning); 
+});
+
+stream.on('limit', function (limitMessage) {
+  console.log('**LIMIT MSG** '+limitMessage); 
+})
+
 stream.on('tweet', function (tweet) {
-  console.log('tweet');
+  console.log('tweet '+Date.now());
 
   if ((tweet.text.substring(0,2)!='RT')
     &&(tweet.text.includes('#suggest'))) {
 
     console.log('ACTION: '+tweet.text);
-    var resp = 'Thanks @'+tweet.user.screen_name+' for the request.';
-    T.post('statuses/update', { status: resp }, function(err, data, response) {
 
-      console.log(classifier.classify('did the tests pass?')); // -> software
+    var uid = tweet.user.id_str; //'902085743207636995'; //tweet.user.id; // 902085743207636995;
+    var p = tweet.user.protected;
+    if (p==false) {
+      console.log(uid); 
+      T.get('statuses/user_timeline', { user_id : uid , count: 20 }, function(err, data, response) {
+        console.log(data.length);
+        var l = data.length;
+        var twts = '';
+        if (l>1) {
+          for (var i = 1; i < l; i++) { // skip first tweet as it is the request for suggestion
+            twts += data[i].text+" . ";
+          }
+          if (tweet.user.description) {
+            twts += tweet.user.description;            
+          }
+          console.log(twts);
+          var clss = classifier.classify(twts);
+          console.log(clss);
 
-      console.log('REPLIED: '+resp);
-    });
-    // T.get('search/tweets', { q : '@'+tweet.user.screen_name, count: 20 }, function(err, data, response) {
-    //  console.log(err);
-    // });
+          var resp = 'Thanks @'+tweet.user.screen_name+' for the request. We suggest: '+clss;
+          T.post('statuses/update', { status: resp }, function(err, data, response) {
+            console.log('REPLIED: '+resp);
+          });
+
+        } else {
+          // zero tweets - pick something random
+          console.log('random selection...');
+        }
+      });
+    } else {
+      console.log('user has private tweets...');
+    }
+
   } else {
     console.log(`DO NOT ACTION: ${tweet.text} FROM @${tweet.user.screen_name}`);
   }
