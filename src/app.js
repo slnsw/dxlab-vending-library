@@ -81,25 +81,28 @@ stream.on('connect', function (request) {
   console.log('Connection requested... '+Date.now());
 });
 stream.on('disconnect', function (disconnectMessage) {
-  console.log('_x_x_ disconnect _x_x_ '+disconnectMessage); 
+  console.log('_x_x_ disconnect _x_x_ '+disconnectMessage);
 });
 stream.on('connected', function (response) {
-  console.log('CONNECTED! '+Date.now()); 
+  console.log('CONNECTED! '+Date.now());
 });
 stream.on('reconnect', function (request, response, connectInterval) {
-  console.log('...re-connected '+Date.now()); 
+  console.log('...re-connected '+Date.now());
 });
 stream.on('warning', function (warning) {
-  console.log('### WARNING! ### '+warning); 
+  console.log('### WARNING! ### '+warning);
 });
 stream.on('limit', function (limitMessage) {
-  console.log('**LIMIT MSG** '+limitMessage); 
+  console.log('**LIMIT MSG** '+limitMessage);
 });
 
 ///////////////////////////////////////////////////////////////////////////
 
-// we got one! 
-stream.on('tweet', function (tweet) {
+// we got one!
+stream.on('tweet', (tweet) => handleTweet(tweet));
+
+export function handleTweet(tweet) {
+
   console.log('--------------------------------------------------');
   console.log('tweet '+Date.now());
 
@@ -111,15 +114,15 @@ stream.on('tweet', function (tweet) {
     console.log('ACTION: '+tweet.text);
 
     // get the user ID (as string)
-    let uid = tweet.user.id_str; 
-    
-    // now get 20 of that user's tweet and classify them!  
+    let uid = tweet.user.id_str;
+
+    // now get 20 of that user's tweet and classify them!
     T.get('statuses/user_timeline', { user_id : uid , count: 20 })
       .catch(function (err) {
         console.log('caught error', err.stack);
       })
       .then(function (result) {
-        // `result` is an Object with keys "data" and "resp". 
+        // `result` is an Object with keys "data" and "resp".
 
         let data = result.data;
         console.log('Asked for 20 tweets and got: '+data.length);
@@ -128,18 +131,18 @@ stream.on('tweet', function (tweet) {
         if (l>1) {
           for (let i = 1; i < l; i++) { // skip first tweet as it is the request for suggestion
             if(Math.random()>0.45) { // randomly pick about half their previous 20 tweets
-              twts += data[i].text+" . ";  
+              twts += data[i].text+" . ";
             }
           }
           if (tweet.user.description) {
             // add the user description for more matching goodness
-            twts += tweet.user.description;            
+            twts += tweet.user.description;
           }
           console.log(twts);
           clss = classifier.classify(twts);
           column = columns[clss];
           console.log(clss);
-          
+
           // spin the wheeel!
           if (Math.random()>0.7) {
             column = Math.floor(Math.random()*8);
@@ -153,29 +156,19 @@ stream.on('tweet', function (tweet) {
           clss = subjects[column];
         }
 
-        // OK do something with the results 
+        // OK do something with the results
         row = Math.floor(Math.random()*7);
         let btn = rows[row]+columns[clss];
         let resp = 'OK @'+tweet.user.screen_name+' from the look of your tweets you might be interested in '+clss+'. Try item '+btn;
-        T.post('statuses/update', { status: resp }, function(err, data, response) {
+
+        // T.post('statuses/update', { status: resp }, function(err, data, response) {
           console.log('REPLIED: '+resp);
-        });
+        // });
 
       });
 
   } else {
     console.log(`DO NOT ACTION: ${tweet.text} FROM @${tweet.user.screen_name}`);
   }
-});
 
-
-
-
-
-
-
-
-
-
-
-
+}
