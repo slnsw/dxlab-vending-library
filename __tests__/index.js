@@ -10,10 +10,10 @@ it('should post a tweet with suggested subject', () => {
   const tweet = {
     text: '@dxlabtest #dxtest',
     user: {
-      id_str: "14334974",
-      screen_name: "Test",
-      description: "Test descriptions",
+      id_str: "15330960",
+      screen_name: "LukeSnarl",
+      description: "me still go on..",
     }
   }
-  handleTweet(tweet);
+  handleTweet(tweet,false); // 2nd parameter is whether to actually send responses (true/false)
 });

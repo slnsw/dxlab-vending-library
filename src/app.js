@@ -101,7 +101,7 @@ stream.on('limit', function (limitMessage) {
 // we got one!
 stream.on('tweet', (tweet) => handleTweet(tweet));
 
-export function handleTweet(tweet) {
+export function handleTweet(tweet,respond) {
 
   console.log('--------------------------------------------------');
   console.log('tweet '+Date.now());
@@ -161,9 +161,13 @@ export function handleTweet(tweet) {
         let btn = rows[row]+columns[clss];
         let resp = 'OK @'+tweet.user.screen_name+' from the look of your tweets you might be interested in '+clss+'. Try item '+btn;
 
-        // T.post('statuses/update', { status: resp }, function(err, data, response) {
-          console.log('REPLIED: '+resp);
-        // });
+        if (respond==true) {
+          T.post('statuses/update', { status: resp }, function(err, data, response) {
+            console.log('REPLIED: '+resp);
+          });
+        } else {
+          console.log('WOULD HAVE REPLIED: '+resp);
+        }
 
       });
 
