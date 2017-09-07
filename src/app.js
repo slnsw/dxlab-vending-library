@@ -105,7 +105,7 @@ stream.on('limit', function (limitMessage) {
 ///////////////////////////////////////////////////////////////////////////
 
 // we got one!
-stream.on('tweet', (tweet) => handleTweet(tweet));
+stream.on('tweet', (tweet) => handleTweet(tweet, true));
 
 export function handleTweet(tweet,respond) {
 
