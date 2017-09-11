@@ -34,7 +34,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^4.4.1",
     "eslint-config-airbnb-base": "^11.3.1",
-    "eslint-config-dxlab": "git+ssh://git@github.com:slnsw/eslint-config-dxlab.git#v0.0.2",
+    "eslint-config-dxlab": "git+ssh://git@github.com:slnsw/eslint-config-dxlab.git#v0.0.5",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.7.0",
     "jest": "^20.0.4",
