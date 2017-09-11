@@ -1,6 +1,6 @@
-# DX Lab GraphQL Service
+# DX Lab Vending Library
 
-Based on aws-serverless-apollo-demo.
+Twitter bot.
 
 ## Getting Started
 
@@ -20,7 +20,7 @@ Based on https://medium.com/entria/testing-a-graphql-server-using-jest-4e00d0e49
 
 ## Code Linting
 
-Uses ESLint, with AirBnb Javascript config.
+Uses ESLint, with DX Lab ESLint config (based on AirBnb Javascript config).
 
 ## Webpack
 
@@ -29,9 +29,6 @@ https://hackernoon.com/hot-reload-all-the-things-ec0fed8ab0
 ## Serverless
 
 https://medium.com/a-man-with-no-server/deploying-a-serverless-application-using-webpack-and-babel-to-support-es2015-to-aws-2f61cff8bafb
-
-# aws-serverless-apollo-demo
-Demo for AWS Lambda + GraphQL + DynamoDB
 
 # Dependencies
 * [apollostack/graphql-server] (https://github.com/apollostack/graphql-server)

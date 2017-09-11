@@ -1,5 +1,5 @@
 {
-  "name": "dxlab-graphql",
+  "name": "dxlab-vending-library",
   "version": "0.0.1",
   "description": "",
   "main": "handler.js",
