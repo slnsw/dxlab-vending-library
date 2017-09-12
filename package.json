@@ -4,8 +4,9 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "start": "webpack --watch & node-dev --no-notify --no-deps build/app.js",
-    "deploy": "serverless deploy",
+    "start": "node build/app.js",
+    "dev": "webpack --watch & node-dev --no-notify --no-deps build/app.js",
+    "deploy": "now sh",
     "build": "webpack --progress",
     "test": "jest --forceExit --runInBand",
     "test:watch": "CI=true jest --watch"
@@ -17,6 +18,7 @@
     "@types/body-parser": "0.0.33",
     "axios": "^0.16.2",
     "body-parser": "^1.15.2",
+    "dotenv": "^4.0.0",
     "lodash": "^4.17.1",
     "natural": "^0.5.4",
     "natural-synaptic": "^1.0.1",

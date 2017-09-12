@@ -3,6 +3,7 @@ node_modules
 build
 npm-debug.log
 coverage
+.env*
 
 # serverless zip
 .serverless

@@ -2,12 +2,14 @@ import Twit from 'twit';
 // import natural from 'natural';
 import NaturalSynaptic from 'natural-synaptic';
 
+require('dotenv').config();
+
 // connect to twitter
 const T = new Twit({
-  consumer_key: 'np5qK4gvGPPhj8WxZ77kkcsHB',
-  consumer_secret: '2xIhrUORakh6RtG6PIGMJY0T0Lwy3NZRQn8JzZS9lFSSeD4doK',
-  access_token: '902026514073395200-wPiitZ263vgwothAIia27ZvgP9aKj9N',
-  access_token_secret: '9tkEBzY9QpMeFUw5mQ5qGwoEReVuYgZ3vwrhbiutFj3ZE',
+  consumer_key: process.env.CONSUMER_KEY,
+  consumer_secret: process.env.CONSUMER_SECRET,
+  access_token: process.env.ACCESS_TOKEN,
+  access_token_secret: process.env.ACCESS_TOKEN_SECRET,
   timeout_ms: 60 * 1000, // optional HTTP request timeout to apply to all requests.
 });
 
@@ -132,9 +134,9 @@ const columns = {
 
 // The seven rows of the vending machine are labelled thusly:
 const rows = { 0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: '1.', 5: '2.', 6: '3.' };
-let row,
-  column,
-  clss;
+let row;
+let column;
+let clss;
 
 // /////////////////////////////////////////////////////////////////////////
 
@@ -145,16 +147,16 @@ const stream = T.stream('statuses/filter', {
 });
 
 // set up some connection monitoring
-stream.on('connect', request => {
+stream.on('connect', () => {
   console.log(`Connection requested....${Date.now()}`);
 });
 stream.on('disconnect', disconnectMessage => {
   console.log(`_x_x_ disconnect _x_x_ ${disconnectMessage}`);
 });
-stream.on('connected', response => {
+stream.on('connected', () => {
   console.log(`CONNECTED! ${Date.now()}`);
 });
-stream.on('reconnect', (request, response, connectInterval) => {
+stream.on('reconnect', () => {
   console.log(`...re-connected ${Date.now()}`);
 });
 stream.on('warning', warning => {
@@ -174,7 +176,7 @@ export function handleTweet(tweet, respond) {
   console.log(`tweet ${Date.now()}`);
 
   // check it isn't a re-tweet and does have the correct hash tag
-  if (tweet.text.substring(0, 2) != 'RT' && tweet.text.includes(hashTag)) {
+  if (tweet.text.substring(0, 2) !== 'RT' && tweet.text.includes(hashTag)) {
     // log incoming tweet
     console.log(`ACTION: ${tweet.text}`);
 
