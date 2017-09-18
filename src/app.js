@@ -246,3 +246,11 @@ export function handleTweet(tweet, respond) {
     console.log(`DO NOT ACTION: ${tweet.text} FROM @${tweet.user.screen_name}`);
   }
 }
+
+/* Setup Server for Now - otherwise it stays on the BUILDING state */
+
+const { createServer } = require('http');
+
+const server = createServer(() => {});
+
+server.listen(3000);
