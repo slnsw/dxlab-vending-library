@@ -2,7 +2,7 @@ import Twit from 'twit';
 // import natural from 'natural';
 import NaturalSynaptic from 'natural-synaptic';
 
-require('dotenv').config();
+// require('dotenv').config();
 
 // connect to twitter
 const T = new Twit({
@@ -196,6 +196,7 @@ export function handleTweet(tweet, respond) {
         console.log(`Asked for 20 tweets and got: ${l}`);
         let twts = '';
         if (l > 1) {
+          /* eslint-disable */
           for (let i = 1; i < l; i++) {
             // skip first tweet as it is the request for suggestion
             if (Math.random() > 0.45) {

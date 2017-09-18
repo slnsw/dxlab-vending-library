@@ -11,12 +11,14 @@ module.exports = {
   entry: [
     'babel-polyfill',
     'webpack/hot/poll?1000',
-    './src/app.js'
+    path.join(__dirname, 'src/app.js')
   ],
   target: 'node',
-  externals: [nodeExternals({
-    whitelist: ['webpack/hot/poll?1000']
-  })],
+  externals: [nodeExternals(
+    {
+      whitelist: ['webpack/hot/poll?1000']
+    }
+  )],
   output: {
     libraryTarget: 'commonjs',
     path: path.join(__dirname, 'build'),

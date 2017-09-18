@@ -4,8 +4,8 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "start": "node build/app.js",
-    "dev": "webpack --watch & node-dev --no-notify --no-deps build/app.js",
+    "start": "node -r dotenv/config build/app.js",
+    "dev": "webpack --watch & node-dev --no-notify --no-deps -r dotenv/config build/app.js",
     "deploy": "now sh",
     "build": "webpack --progress",
     "test": "jest --forceExit --runInBand",
