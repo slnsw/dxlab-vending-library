@@ -29,7 +29,10 @@ $ npm run test:watch
 
 ## Deployment
 
-Make sure you have `now` installed globally, then run:
+Make sure you have `now` installed globally (`npm install now -g`), then run:
 ```
-$ npm run deploy
+$ now
+$ now scale dxlab-vending-library-XXXXXXXX 1 # Prevents instance from being FROZEN
+# Remove old instance
+$ now rm dxlab-vending-library-YYYYYYYY
 ```
