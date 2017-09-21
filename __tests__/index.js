@@ -8,11 +8,11 @@ import { handleTweet } from '../src/app.js';
 
 it('should post a tweet with suggested subject', () => {
   const tweet = {
-    text: '@dxlabtest #dxtest',
+    text: '@dxlabtest #suggest',
     user: {
-      id_str: "17817926",
-      screen_name: "RomanceWriter",
-      description: "Witty. Charming. Smiles a lot. Writes romantic suspense.",
+      id_str: "20426239",
+      screen_name: "paulabray",
+      description: "All things digital, (strategy, development, innovation and experimentation)-I run an innovation lab in cultural heritage.Views mine.",
     }
   }
   handleTweet(tweet,false); // 2nd parameter is whether to actually send responses (true/false)
