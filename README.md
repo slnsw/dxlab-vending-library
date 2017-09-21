@@ -5,6 +5,7 @@ Twitter bot.
 ## Getting Started
 
 ```
+# Make sure you are running Node 6.10!!! Or else bad things will happen.
 $ npm install
 $ Set up .env file (see below)
 $ npm run dev # Starts Webpack watch and node-dev
