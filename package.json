@@ -9,7 +9,7 @@
     "deploy": "now sh",
     "build": "webpack --progress",
     "test": "jest --forceExit --runInBand",
-    "test:watch": "CI=true jest --watch"
+    "test:watch": "CI=true node -r dotenv/config ./node_modules/.bin/jest --watch"
   },
   "keywords": [],
   "author": "",
