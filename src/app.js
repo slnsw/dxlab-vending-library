@@ -82,7 +82,7 @@ classifier.addDocument(
 classifier.train();
 
 // twitter params (from .env file)
-const twitterHandle = process.env.TWITTER_HANDLE;
+const twitterHandle = `@${process.env.TWITTER_HANDLE}`;
 const hashTag = process.env.HASHTAG;
 
 // the seven subjects are:
@@ -110,6 +110,11 @@ const stream = T.stream('statuses/filter', {
   track: twitterHandle,
   language: 'en',
 });
+
+console.log('--------------------------------------------------');
+console.log(`TWITTER_HANDLE: ${twitterHandle}`);
+console.log(`HASHTAG: ${hashTag}`);
+console.log('--------------------------------------------------');
 
 // set up some connection monitoring
 stream.on('connect', () => {
@@ -200,15 +205,15 @@ export function handleTweet(tweet, respond) {
         column = Math.floor(Math.random() * 8);
         const btn = rowName+columns[column];
 
-        const resps = { 
-          0: `OK @${tweet.user.screen_name} from the look of your tweets you might be interested in ${clss}. Try item ${btn}`, 
-          1: `OK @${tweet.user.screen_name} from the look of your tweets you might be interested in ${clss}. Try item ${btn}`,
-          2: `OK @${tweet.user.screen_name} from the look of your tweets you might be interested in ${clss}. Try item ${btn}`,
-          3: `OK @${tweet.user.screen_name} from the look of your tweets you might be interested in ${clss}. Try item ${btn}`,
-          4: `OK @${tweet.user.screen_name} from the look of your tweets you might be interested in ${clss}. Try item ${btn}`,
-          5: `OK @${tweet.user.screen_name} from the look of your tweets you might be interested in ${clss}. Try item ${btn}` 
+        const resps = {
+          0: `OK @${tweet.user.screen_name} from the look of your tweets you might be interested in ${clss}. Select item ${btn} from the keypad.`,
+          1: `Hi @${tweet.user.screen_name}, based on your tweets, I think you are interested in ${clss}. Select item ${btn} from the keypad.`,
+          2: `Greetings @${tweet.user.screen_name}, we have analysed your tweets and concluded that you are interested in ${clss}. Select item ${btn} from the keypad.`,
+          3: `Hello @${tweet.user.screen_name}, from the look of your tweets you might be interested in ${clss}. Select item ${btn} from the keypad.`,
+          4: `Hi @${tweet.user.screen_name}, based on your previous tweets, you might be interested in ${clss}. Select item ${btn} from the keypad.`,
+          5: `Hey @${tweet.user.screen_name}, from your previous tweets, you are probably interested in ${clss}. Select item ${btn} from the keypad.`
         };
-        
+
         const respno = Math.floor(Math.random() * Object.keys(resps).length);
         const resp = resps[respno];
 
@@ -228,7 +233,6 @@ export function handleTweet(tweet, respond) {
 /* Setup Server for Now - otherwise it stays on the BUILDING state */
 
 const { createServer } = require('http');
-
 const server = createServer(() => {});
 
 server.listen(3000);
