@@ -24,7 +24,7 @@ classifier.addDocument(
 
 // TRAVEL training data
 classifier.addDocument(
-  'traveled, traveling; travelled, travelling. Make a journey. driving excursion flying movement ride sailing sightseeing tour trek trip biking cruising drive expedition junket passage  ramble riding seafaring touring trekking voyage voyaging walk wandering wanderlust wayfaring globe-trotting overnight ',
+  'traveled, traveling; travelled, travelling. Make a journey. Driving. Cars. Excursion. Flying. Airport. Check in. Planes. Airplane. Train. Locomotive. Sightseeing tour. Trip, biking, cruising. Drive. Riding, horses. Touring. Voyage. Voyaging. Globe-trotting. ',
   'Travel',
 );
 
@@ -41,7 +41,7 @@ classifier.addDocument(
   'Curios',
 );
 classifier.addDocument(
-  'Inscribed. Jewellery, jewelry, boxes & cases, gold, diamonds, decorative art, treasures, museum, coins, stamps, numismatics, antiques, scrimshaw',
+  'Inscribed. Jewellery, jewelry, boxes & cases, gold, diamonds, Vase. Decorative art. Treasures. Museum. Exquisite craftsmanship. Coins. Stamps. Numismatics. Antiques. Scrimshaw.',
   'Curios',
 );
 
@@ -51,7 +51,7 @@ classifier.addDocument(
 //  'Love',
 // );
 classifier.addDocument('Adult Females, greetings cards, love letters, Valentine’s Day.', 'Love');
-classifier.addDocument('Love. romance. sex. gender. Physical attraction. Romantic.', 'Love');
+classifier.addDocument('Love. romance. sex. gender. Physical attraction. Romantic. Romance. Dating. Date night. Ooh-la-la. Marriage. Wedding. Marriage equality. Same Sex Marriage', 'Love');
 
 // ANIMALS traning data
 classifier.addDocument(
@@ -235,7 +235,7 @@ export function handleTweet(tweet, respond) {
     const uid = tweet.user.id_str;
 
     // now get 20 of that user's tweets and classify them!
-    T.get('statuses/user_timeline', { user_id: uid, count: 20 })
+    T.get('statuses/user_timeline', { user_id: uid, count: 40 })
       .catch(err => {
         console.log('caught error', err.stack);
       })
@@ -244,14 +244,14 @@ export function handleTweet(tweet, respond) {
 
         const data = result.data;
         const l = data.length;
-        console.log(`Asked for 20 tweets and got: ${l}`);
+        console.log(`Asked for 40 tweets and got: ${l}`);
         let twts = '';
         if (l > 1) {
           /* eslint-disable */
           for (let i = 1; i < l; i++) {
             // skip first tweet as it is the request for suggestion
-            if (Math.random() > 0.45) {
-              // randomly pick about half their previous 20 tweets
+            if (Math.random() > 0.72) {
+              // randomly pick a subset of their previous tweets
               twts += `${data[i].text} . `;
             }
           }
@@ -288,13 +288,23 @@ export function handleTweet(tweet, respond) {
 
         const shURL = shortURLs[btn];
 
+//        const resps = {
+//          0: `OK @${tweet.user.screen_name} from the look of your tweets you might be interested in ${clss}. Select item ${btn} from the keypad. Read about it: ${shURL}`,
+//          1: `Hi @${tweet.user.screen_name}, based on your tweets, I think you are interested in ${clss}. Select item ${btn} from the keypad. More info: ${shURL}`,
+//          2: `Greetings @${tweet.user.screen_name}, we have analysed your tweets and concluded that you are interested in ${clss}. Select item ${btn} from the keypad. Collection link: ${shURL}`,
+//          3: `Hello @${tweet.user.screen_name}, from the look of your tweets you might be interested in ${clss}. Select item ${btn} from the keypad. Catalogue url: ${shURL}`,
+//          4: `Hi @${tweet.user.screen_name}, based on your previous tweets, you might be interested in ${clss}. Select item ${btn} from the keypad. Find out more: ${shURL}`,
+//          5: `Hey @${tweet.user.screen_name}, from your previous tweets, you are probably interested in ${clss}. Select item ${btn} from the keypad. Read more: ${shURL}`,
+//        };
+
+
         const resps = {
-          0: `OK @${tweet.user.screen_name} from the look of your tweets you might be interested in ${clss}. Select item ${btn} from the keypad. Read about it: ${shURL}`,
-          1: `Hi @${tweet.user.screen_name}, based on your tweets, I think you are interested in ${clss}. Select item ${btn} from the keypad. More info: ${shURL}`,
-          2: `Greetings @${tweet.user.screen_name}, we have analysed your tweets and concluded that you are interested in ${clss}. Select item ${btn} from the keypad. Collection link: ${shURL}`,
-          3: `Hello @${tweet.user.screen_name}, from the look of your tweets you might be interested in ${clss}. Select item ${btn} from the keypad. Catalogue url: ${shURL}`,
-          4: `Hi @${tweet.user.screen_name}, based on your previous tweets, you might be interested in ${clss}. Select item ${btn} from the keypad. Find out more: ${shURL}`,
-          5: `Hey @${tweet.user.screen_name}, from your previous tweets, you are probably interested in ${clss}. Select item ${btn} from the keypad. Read more: ${shURL}`,
+          0: `@${tweet.user.screen_name} your tweets suggest you might be interested in ${clss}. Enter ${btn} on keypad. More: ${shURL}`,
+          1: `@${tweet.user.screen_name} based on your tweets, I think you might like ${clss}. Press ${btn} on keypad. More: ${shURL}`,
+          2: `@${tweet.user.screen_name} we have analysed your tweets and think you are interested in ${clss}. Type ${btn} on keypad. More: ${shURL}`,
+          3: `@${tweet.user.screen_name} from the look of your tweets you might be interested in ${clss}. Enter ${btn} on keypad. More: ${shURL}`,
+          4: `@${tweet.user.screen_name} based on your previous tweets, you might be interested in ${clss}. Press ${btn} on keypad. More: ${shURL}`,
+          5: `@${tweet.user.screen_name} from your previous tweets, you are probably interested in ${clss}. Type ${btn} on keypad. More: ${shURL}`,
         };
 
         const respno = Math.floor(Math.random() * Object.keys(resps).length);
@@ -303,6 +313,7 @@ export function handleTweet(tweet, respond) {
         if (respond) {
           T.post('statuses/update', { status: resp }, () => {
             console.log(`REPLIED: ${resp}`);
+            console.log(`Length: ${resp.length} [${respno}]`);
           });
         } else {
           console.log(`WOULD HAVE REPLIED: ${resp}`);
