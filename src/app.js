@@ -35,10 +35,7 @@ classifier.addDocument(
 );
 
 // CURIOS traning data
-classifier.addDocument(
-  'Cartier hairpin box belonging to Nellie Melba, 1918. Objects. 1 hairpin box.',
-  'Curios',
-);
+classifier.addDocument('Cartier hairpin box belonging to Nellie Melba, 1918. Objects. 1 hairpin box.', 'Curios');
 classifier.addDocument(
   'Donor\'s letter of offer (undated, received 1953) states the hairpin box was "presented to me by my friend the late Dame Nellie Melba".',
   'Curios',
@@ -53,14 +50,8 @@ classifier.addDocument(
 //  'Miss Paterson and Miss Taylor reading Valentine’s Day cards, c1875 / American & Australasian Photographic Company.',
 //  'Love',
 // );
-classifier.addDocument(
-  'Adult Females, greetings cards, love letters, Valentine’s Day.',
-  'Love',
-);
-classifier.addDocument(
-  'Love. romance. sex. gender. Physical attraction. Romantic.',
-  'Love',
-);
+classifier.addDocument('Adult Females, greetings cards, love letters, Valentine’s Day.', 'Love');
+classifier.addDocument('Love. romance. sex. gender. Physical attraction. Romantic.', 'Love');
 
 // ANIMALS traning data
 classifier.addDocument(
@@ -73,10 +64,7 @@ classifier.addDocument(
   'Quote: "In books lies the soul of the whole past time / The articulate and audible voice of the past / When the body and material of it has altogether / Vanished like a dream"',
   'Quotes',
 );
-classifier.addDocument(
-  'Quotes, quotable quotes. Quotations, citations',
-  'Quotes',
-);
+classifier.addDocument('Quotes, quotable quotes. Quotations, citations', 'Quotes');
 
 // GO!
 classifier.train();
@@ -87,16 +75,109 @@ const hashTag = process.env.HASHTAG;
 
 // the seven subjects are:
 // Curios, Love, Maps, Travel, Portraits, Animals, Quotes
-const subjects = { 0: 'Curios', 1: 'Love', 2: 'Maps', 3: 'Travel', 4: 'Portraits', 5: 'Animals', 6: 'Quotes' };
+const subjects = {
+  0: 'Curios',
+  1: 'Love',
+  2: 'Maps',
+  3: 'Travel',
+  4: 'Portraits',
+  5: 'Animals',
+  6: 'Quotes',
+};
 
 // names of the columns in the vending machine:
-const columns = { 0: '1', 1: '2', 2: '3', 3: '4', 4: '5', 5: '6', 6: '7', 7: '8' };
+const columns = {
+  0: '1',
+  1: '2',
+  2: '3',
+  3: '4',
+  4: '5',
+  5: '6',
+  6: '7',
+  7: '8',
+};
 
 // numbers of the rows, as referenced by subject:
-const rowNums = { Curios: 0, Love: 1, Maps: 2, Travel: 3, Portraits: 4, Animals: 5, Quotes: 6 };
+const rowNums = {
+  Curios: 0,
+  Love: 1,
+  Maps: 2,
+  Travel: 3,
+  Portraits: 4,
+  Animals: 5,
+  Quotes: 6,
+};
 
 // names of the rows, as referenced by subject:
-const rowNames = { Curios: 'A', Love: 'B', Maps: 'C', Travel: 'D', Portraits: '1.', Animals: '2.', Quotes: '3.' };
+const rowNames = {
+  Curios: 'A',
+  Love: 'B',
+  Maps: 'C',
+  Travel: 'D',
+  Portraits: '1.',
+  Animals: '2.',
+  Quotes: '3.',
+};
+
+// short URL for each item
+const shortURLs = {
+  A1: 'https://goo.gl/sPxBYS',
+  A2: 'https://goo.gl/hgc7Qb',
+  A3: 'https://goo.gl/1H9GLo',
+  A4: 'https://goo.gl/rj65nz',
+  A5: 'https://goo.gl/NACSMH',
+  A6: 'https://goo.gl/t9ERsC',
+  A7: 'https://goo.gl/seMNNH',
+  A8: 'https://goo.gl/3ZmEE3',
+  B1: 'https://goo.gl/YwxzKk',
+  B2: 'https://goo.gl/ynX6J7',
+  B3: 'https://goo.gl/E7mQto',
+  B4: 'https://goo.gl/FBovgk',
+  B5: 'https://goo.gl/TqPmaf',
+  B6: 'https://goo.gl/cD8Amu',
+  B7: 'https://goo.gl/W9ptWb',
+  B8: 'https://goo.gl/qpJ5HM',
+  2.1: 'https://goo.gl/hRNF7Q',
+  2.2: 'https://goo.gl/cZ6rT5',
+  2.3: 'https://goo.gl/nn5RqE',
+  2.4: 'https://goo.gl/ryh4N1',
+  2.5: 'https://goo.gl/YDnkwS',
+  2.6: 'https://goo.gl/cEpCxy',
+  2.7: 'https://goo.gl/ZRvNGN',
+  2.8: 'https://goo.gl/9D8HH1',
+  3.1: 'https://goo.gl/6ZAH1i',
+  3.2: 'https://goo.gl/KdfmoU',
+  3.3: 'https://goo.gl/RtJBN2',
+  3.4: 'https://goo.gl/E7J1X2',
+  3.5: 'https://goo.gl/dM28Hz',
+  3.6: 'https://goo.gl/xq6EBe',
+  3.7: 'https://goo.gl/ap9gpn',
+  3.8: 'https://goo.gl/pKm6vz',
+  C1: 'https://goo.gl/oYjNsG',
+  C2: 'https://goo.gl/wuBY4a',
+  C3: 'https://goo.gl/xrMPfC',
+  C4: 'https://goo.gl/iyCgrA',
+  C5: 'https://goo.gl/zc8f9P',
+  C6: 'https://goo.gl/1uagNa',
+  C7: 'https://goo.gl/fFwkF8',
+  C8: 'https://goo.gl/BydCoq',
+  D1: 'https://goo.gl/Phcv1b',
+  D2: 'https://goo.gl/skz3zN',
+  D3: 'https://goo.gl/hVp7wM',
+  D4: 'https://goo.gl/5p5nVn',
+  D5: 'https://goo.gl/sNFjdV',
+  D6: 'https://goo.gl/HFXyC4',
+  D7: 'https://goo.gl/7pvHvr',
+  D8: 'https://goo.gl/rfwvkn',
+  1.1: 'https://goo.gl/1TE49e',
+  1.2: 'https://goo.gl/yY5uax',
+  1.3: 'https://goo.gl/4T33oi',
+  1.4: 'https://goo.gl/N5TJ9e',
+  1.5: 'https://goo.gl/MX9Wbx',
+  1.6: 'https://goo.gl/E4vehc',
+  1.7: 'https://goo.gl/ViWEr9',
+  1.8: 'https://goo.gl/WMBiRW',
+};
 
 let rowName;
 let rowNum;
@@ -203,15 +284,17 @@ export function handleTweet(tweet, respond) {
 
         // OK do something with the results
         column = Math.floor(Math.random() * 8);
-        const btn = rowName+columns[column];
+        const btn = rowName + columns[column];
+
+        const shURL = shortURLs[btn];
 
         const resps = {
-          0: `OK @${tweet.user.screen_name} from the look of your tweets you might be interested in ${clss}. Select item ${btn} from the keypad.`,
-          1: `Hi @${tweet.user.screen_name}, based on your tweets, I think you are interested in ${clss}. Select item ${btn} from the keypad.`,
-          2: `Greetings @${tweet.user.screen_name}, we have analysed your tweets and concluded that you are interested in ${clss}. Select item ${btn} from the keypad.`,
-          3: `Hello @${tweet.user.screen_name}, from the look of your tweets you might be interested in ${clss}. Select item ${btn} from the keypad.`,
-          4: `Hi @${tweet.user.screen_name}, based on your previous tweets, you might be interested in ${clss}. Select item ${btn} from the keypad.`,
-          5: `Hey @${tweet.user.screen_name}, from your previous tweets, you are probably interested in ${clss}. Select item ${btn} from the keypad.`
+          0: `OK @${tweet.user.screen_name} from the look of your tweets you might be interested in ${clss}. Select item ${btn} from the keypad. Read about it: ${shURL}`,
+          1: `Hi @${tweet.user.screen_name}, based on your tweets, I think you are interested in ${clss}. Select item ${btn} from the keypad. More info: ${shURL}`,
+          2: `Greetings @${tweet.user.screen_name}, we have analysed your tweets and concluded that you are interested in ${clss}. Select item ${btn} from the keypad. Collection link: ${shURL}`,
+          3: `Hello @${tweet.user.screen_name}, from the look of your tweets you might be interested in ${clss}. Select item ${btn} from the keypad. Catalogue url: ${shURL}`,
+          4: `Hi @${tweet.user.screen_name}, based on your previous tweets, you might be interested in ${clss}. Select item ${btn} from the keypad. Find out more: ${shURL}`,
+          5: `Hey @${tweet.user.screen_name}, from your previous tweets, you are probably interested in ${clss}. Select item ${btn} from the keypad. Read more: ${shURL}`,
         };
 
         const respno = Math.floor(Math.random() * Object.keys(resps).length);
