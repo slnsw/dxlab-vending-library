@@ -152,7 +152,7 @@ const shortURLs = {
   3.5: 'https://goo.gl/dM28Hz',
   3.6: 'https://goo.gl/xq6EBe',
   3.7: 'https://goo.gl/ap9gpn',
-  3.8: 'https://goo.gl/pKm6vz',
+  3.8: 'https://goo.gl/dM28Hz', // 'https://goo.gl/pKm6vz', // printing error - content for 3.5 is also in slot 3.8
   C1: 'https://goo.gl/oYjNsG',
   C2: 'https://goo.gl/wuBY4a',
   C3: 'https://goo.gl/xrMPfC',
