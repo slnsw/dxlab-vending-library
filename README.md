@@ -34,8 +34,9 @@ $ npm run test:watch
 
 Make sure you have `now` installed globally (`npm install now -g`), then run:
 ```
-$ now
+# Remove old instance first
+$ now scale dxlab-vending-library-YYYYYYYY 0 # Scale down app first, rm may not remove straight away
+$ now rm dxlab-vending-library-YYYYYYYY # Remove old app
+$ now # Deploy new app
 $ now scale dxlab-vending-library-XXXXXXXX 1 # Prevents instance from being FROZEN
-# Remove old instance
-$ now rm dxlab-vending-library-YYYYYYYY
 ```
