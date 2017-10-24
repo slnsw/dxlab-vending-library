@@ -46,10 +46,6 @@ classifier.addDocument(
 );
 
 // LOVE traning data
-// classifier.addDocument(
-//  'Miss Paterson and Miss Taylor reading Valentine’s Day cards, c1875 / American & Australasian Photographic Company.',
-//  'Love',
-// );
 classifier.addDocument('Adult Females, greetings cards, love letters, Valentine’s Day.', 'Love');
 classifier.addDocument('Love. romance. sex. gender. Physical attraction. Romantic. Romance. Dating. Date night. Ooh-la-la. Marriage. Wedding. Marriage equality. Same Sex Marriage', 'Love');
 
@@ -234,7 +230,7 @@ export function handleTweet(tweet, respond) {
     // get the user ID (as string)
     const uid = tweet.user.id_str;
 
-    // now get 20 of that user's tweets and classify them!
+    // now get 40 of that user's tweets and classify them!
     T.get('statuses/user_timeline', { user_id: uid, count: 40 })
       .catch(err => {
         console.log('caught error', err.stack);
@@ -256,7 +252,7 @@ export function handleTweet(tweet, respond) {
             }
           }
           if (tweet.user.description) {
-            // add the user description for more matching goodness
+            // add the user description for more text matching goodness
             twts += tweet.user.description;
           }
           console.log(twts);
@@ -267,7 +263,7 @@ export function handleTweet(tweet, respond) {
           rowNum = rowNums[clss];
           console.log(clss);
 
-          // spin the wheeel!
+          // spin the wheeel! (Randomly choose a theme 30% of the time)
           if (Math.random() > 0.7) {
             rowNum = Math.floor(Math.random() * 7);
             clss = subjects[rowNum];
@@ -283,12 +279,14 @@ export function handleTweet(tweet, respond) {
         }
 
         // OK do something with the results
-        column = Math.floor(Math.random() * 8);
-        const btn = rowName + columns[column];
+        column = Math.floor(Math.random() * 8); // pick a column randomly
+        const btn = rowName + columns[column]; // construct button code for user to enter on vending machine
 
         const shURL = shortURLs[btn];
 
-//        const resps = {
+// old tweets - some of these were >140 when the variables were filled and thus failing to send, so a shortened version replaces them below
+
+//        const resps = { 
 //          0: `OK @${tweet.user.screen_name} from the look of your tweets you might be interested in ${clss}. Select item ${btn} from the keypad. Read about it: ${shURL}`,
 //          1: `Hi @${tweet.user.screen_name}, based on your tweets, I think you are interested in ${clss}. Select item ${btn} from the keypad. More info: ${shURL}`,
 //          2: `Greetings @${tweet.user.screen_name}, we have analysed your tweets and concluded that you are interested in ${clss}. Select item ${btn} from the keypad. Collection link: ${shURL}`,
@@ -297,7 +295,7 @@ export function handleTweet(tweet, respond) {
 //          5: `Hey @${tweet.user.screen_name}, from your previous tweets, you are probably interested in ${clss}. Select item ${btn} from the keypad. Read more: ${shURL}`,
 //        };
 
-
+        // we have several variantions in response to make the Bot seem less Bot-like.
         const resps = {
           0: `@${tweet.user.screen_name} your tweets suggest you might be interested in ${clss}. Enter ${btn} on keypad. More: ${shURL}`,
           1: `@${tweet.user.screen_name} based on your tweets, I think you might like ${clss}. Press ${btn} on keypad. More: ${shURL}`,
