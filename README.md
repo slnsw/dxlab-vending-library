@@ -23,7 +23,9 @@ It listens to the Twitter firehose for tweets sent to its `@VendingLibrary` hand
 
 At this point it is necessary to describe the vending machine a bit further. It contains 56 coils into each of which about 20 items can be slotted. The coil turns 360 degrees and the front-most item drops out for the lucky user. These 56 coils are arranged into seven rows of eight. So each row is dedicated to the items of one theme. Each theme has eight unique items.
 
-One the Bot has determines your theme it knows which row to suggest, and to determine which of the eight items in that row it simply picks one at random. Then tweets back to you saying something along the lines of `From the look of your tweets you might be interested in [theme]. Enter [code] on the keypad.`
+One the Bot has determined your theme it knows which row to suggest, and to determine which of the eight items in that row it simply picks one at random. Then tweets back to you saying something along the lines of `From the look of your tweets you might be interested in [theme]. Enter [code] on the keypad. [shortURL]`
+
+Each of the printed collection items has a short URL on it which links back to the item's entry in the Library's catalogue. This allows people to find out more about their item. We thought it might be useful if the tweet you got back from the Bot also included that short URL, so it does. Less typing with one's thumbs. Of course this has the side effect that the items in each row must be placed in the correct order when the Vending Library is being stocked.
 
 
 ## Getting Started
