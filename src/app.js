@@ -183,10 +183,7 @@ let clss;
 // /////////////////////////////////////////////////////////////////////////
 
 // keep an eye out for people tweeting at us
-const stream = T.stream('statuses/filter', {
-  track: twitterHandle,
-  language: 'en',
-});
+const stream = T.stream('statuses/filter', { track: twitterHandle });
 
 console.log('--------------------------------------------------');
 console.log(`TWITTER_HANDLE: ${twitterHandle}`);
