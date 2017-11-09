@@ -227,6 +227,9 @@ export function handleTweet(tweet, respond) {
     // get the user ID (as string)
     const uid = tweet.user.id_str;
 
+    const tweetId = tweet.id_str;
+    console.log(`Tweet ID: ${tweetId}`);
+
     // now get 40 of that user's tweets and classify them!
     T.get('statuses/user_timeline', { user_id: uid, count: 40 })
       .catch(err => {
@@ -306,7 +309,10 @@ export function handleTweet(tweet, respond) {
         const resp = resps[respno];
 
         if (respond) {
-          T.post('statuses/update', { status: resp }, () => {
+          T.post('statuses/update', { 
+            status: resp,
+            in_reply_to_status_id: tweetId
+          }, () => {
             console.log(`REPLIED: ${resp}`);
             console.log(`Length: ${resp.length} [${respno}]`);
           });
