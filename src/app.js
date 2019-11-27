@@ -128,7 +128,7 @@ NaturalSynaptic.load(neuralNetFilename, (err, classifier) => {
 
           const shURL = bookData[clss].url; // shortURLs[btn];
           const title = bookData[clss].title; // shortURLs[btn];
-          const btn = 'A1'; // bookData[clss].button;
+          const btn = bookData[clss].button;
 
           // we have several variantions in response to make the Bot seem less Bot-like.
           const resps = {
