@@ -45,7 +45,7 @@ export const handleTweet = async (T, tweet, hashTag, respond = false) => {
           trainingTweets += tweet.user.description;
         }
 
-        console.log('Training tweets:', trainingTweets);
+        // console.log('Training tweets:', trainingTweets);
 
         // now classify them
         result = await classify(trainingTweets);
