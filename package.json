@@ -20,9 +20,9 @@
     "body-parser": "^1.15.2",
     "dotenv": "^4.0.0",
     "lodash": "^4.17.1",
-    "natural": "^0.5.4",
+    "natural": "^0.6.3",
     "natural-synaptic": "^1.0.1",
-    "twit": "^2.2.9"
+    "twit": "^2.2.11"
   },
   "devDependencies": {
     "@types/aws-lambda": "0.0.5",

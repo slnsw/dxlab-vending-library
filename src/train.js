@@ -1,24 +1,25 @@
-// import natural from 'natural';
-const NaturalSynaptic = require('natural-synaptic');
-
-const bookData = require('./bookData.js');
+// NOTE: Not used right now (kaho)
 
 require('dotenv').config();
 
-// console.log(bookData.length);
+const Natural = require('natural');
 
-// get ready to do some text classification
-const classifier = new NaturalSynaptic();
+const classifier = new Natural.BayesClassifier();
+
+const bookData = require('./bookData.js');
 
 const neuralNetFilename = 'neuralNet.json';
 
-// train the thing
-for (let i = 0; i < bookData.length; i++) {
+bookData.forEach((book, i) => {
   console.log(`adding dataset ${i}`);
-  classifier.addDocument(bookData[i].text, i);
-}
+  classifier.addDocument(book.text, i);
+});
 
 console.log('beginning training...');
+
+classifier.events.on('trainedWithDocument', (obj) => {
+  console.log(obj);
+});
 
 // GO!
 classifier.train();

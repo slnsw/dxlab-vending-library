@@ -2,7 +2,7 @@ import Twit from 'twit';
 // import natural from 'natural';
 import NaturalSynaptic from 'natural-synaptic';
 
-import bookData from 'bookData.js';
+import bookData from './bookData';
 
 require('dotenv').config();
 
@@ -71,7 +71,7 @@ NaturalSynaptic.load(neuralNetFilename, (err, classifier) => {
   // we got one!
   stream.on('tweet', (tweet) => handleTweet(tweet, true));
 
-  export function handleTweet(tweet, respond) {
+  function handleTweet(tweet, respond) {
     console.log('--------------------------------------------------');
     console.log(`tweet ${Date.now()}`);
 
@@ -165,10 +165,11 @@ NaturalSynaptic.load(neuralNetFilename, (err, classifier) => {
       );
     }
   }
-  /* Setup Server for Now - otherwise it stays on the BUILDING state */
 
-  const { createServer } = require('http');
-  const server = createServer(() => {});
+  // /* Setup Server for Now - otherwise it stays on the BUILDING state */
 
-  server.listen(3000);
+  // const { createServer } = require('http');
+  // const server = createServer(() => {});
+
+  // server.listen(3000);
 });
