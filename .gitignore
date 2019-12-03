@@ -11,3 +11,5 @@ coverage
 
 # vim
 *.swp
+
+*.code-workspace
