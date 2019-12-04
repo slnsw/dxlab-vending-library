@@ -9,7 +9,7 @@ const classify = (content) => {
     classifier.addDocument(
       // book.text.slice(Math.floor(Math.random() * 100), 140),
       // book.text.slice(0, 190),
-      book.text,
+      book.text, // from testing it seems using the whole text gives most evenly distributed results
       // book.title,
       i,
     );

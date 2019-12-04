@@ -6,6 +6,8 @@ const bookData = [
     title: '"Horse laughter" by Will H. Ogilvie and G. Denholm Armour',
     url: 'https://bit.ly/2kQXHUr',
     button: 'D8',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/horse-683x1024.png',
   },
   {
     // 1
@@ -14,6 +16,8 @@ const bookData = [
     title: '"Radio replies" Second series by Dr. Rumble',
     url: 'https://bit.ly/2kTQVgB',
     button: 'B8',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190502_152922-1-716x1024.png',
   },
   {
     // 2
@@ -22,6 +26,8 @@ const bookData = [
     title: '"Follow your stars to success" by June Marsden',
     url: 'https://bit.ly/2mpeChm',
     button: 'B7',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190502_153120-1-803x1024.png',
   },
   {
     // 3
@@ -30,6 +36,8 @@ const bookData = [
     title: '"How to win friends and influence people" by Dale Carnegie',
     url: 'https://bit.ly/2kmLDKk',
     button: 'A1',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190502_154030-1-630x1024.png',
   },
   {
     // 4
@@ -38,6 +46,8 @@ const bookData = [
     title: '"The book of zoögraphy" by Raymond L. Ditmars',
     url: 'https://bit.ly/2kSowro',
     button: '11',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_0020-828x1024.png',
   },
   {
     // 5
@@ -46,6 +56,8 @@ const bookData = [
     title: '"Fish who answer the telephone" by Professor Y. Frolov',
     url: 'https://bit.ly/2m2KFDn',
     button: 'C8',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_0026-708x1024.png',
   },
   {
     // 6
@@ -54,6 +66,8 @@ const bookData = [
     title: '"Lucid intervals" by Walter Murdoch',
     url: 'https://bit.ly/2lWxSCC',
     button: 'A2',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_0087-697x1024.png',
   },
 
   {
@@ -63,6 +77,8 @@ const bookData = [
     title: '"Not quite paradise" by Bernard Thorogood',
     url: 'https://bit.ly/2ktoRAG',
     button: 'A3',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190502_145809_2-1-839x1024.png',
   },
   {
     // 8
@@ -71,6 +87,8 @@ const bookData = [
     title: '"Jungle doctor pulls a leg" by Paul White',
     url: 'https://bit.ly/2mpfnXK',
     button: 'A4',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190502_150659-1-705x1024.png',
   },
   {
     // 9
@@ -79,6 +97,8 @@ const bookData = [
     title: '"Die Missionare" by von Friedrich Gerstäcker',
     url: 'https://bit.ly/2OMwFbF',
     button: 'A5',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190502_152502-1-756x1024.png',
   },
   {
     // 10
@@ -87,6 +107,8 @@ const bookData = [
     title: '"Some one is coming" by John MacNeil',
     url: 'https://bit.ly/2lV2VPl',
     button: 'A6',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190502_152801-1-709x1024.png',
   },
   {
     // 11
@@ -95,6 +117,8 @@ const bookData = [
     title: '"Your days are numbered" by Florence Campbell',
     url: 'https://bit.ly/2mnSoMH',
     button: 'B6',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190502_152956-1-720x1024.png',
   },
   {
     // 12
@@ -103,6 +127,8 @@ const bookData = [
     title: '"Your first pony" by Beverley Heselton',
     url: 'https://bit.ly/2DlfXec',
     button: 'A7',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190508_162934-1-692x1024.png',
   },
   {
     // 13
@@ -111,6 +137,8 @@ const bookData = [
     title: '"Plant doctoring is fun" by Cynthia Westcott',
     url: 'https://bit.ly/33jpexT',
     button: 'A8',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190515_162730-1-697x1024.png',
   },
   {
     // 14
@@ -119,6 +147,8 @@ const bookData = [
     title: '"Richard Ayoade presents: the grip of film" by Gordy LaSure',
     url: 'https://bit.ly/2kSrxIe',
     button: '12',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190823_142209-final-693x1024.png',
   },
   {
     // 15
@@ -127,6 +157,8 @@ const bookData = [
     title: '"The book of why" by Robert L. Shook',
     url: 'https://bit.ly/2koKvpA',
     button: '13',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190823_142408-final-715x1024.png',
   },
   {
     // 16
@@ -135,6 +167,8 @@ const bookData = [
     title: '"Post-truth : how bullshit conquered the world" by James Ball',
     url: 'https://bit.ly/2Ome5Io',
     button: '14',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190823_142932-final-682x1024.png',
   },
   {
     // 17
@@ -143,14 +177,18 @@ const bookData = [
     title: '"How to build for climate" by Alcock and Richards',
     url: 'https://bit.ly/2PFkqA3',
     button: '15',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190515_154209-1-798x1024.png',
   },
   {
     // 18
     text:
-      '"The pumpkin eater" by Penelope Mortimer. Author / Creator: Mortimer, Penelope, 1918- Date: 1964. Contents: 157 p. ; 18 cm. Series: Penguin books 2166. Publisher: Harmondsworth, Eng. : Penguin by arrangement with Hutchinson of London, 1964. Subjects: Penguin Books Collection. Notes: First published, London: Hutchinson, 1962. Rare Books copy: Also has Ringwood, Vic. in imprint. Rare Books copy: Part of the Penguin Books Collection',
-    title: '"The pumpkin eater" by Penelope Mortimer',
-    url: 'https://bit.ly/34ePafe',
+      '"Mother alone" by Lois Bell. Author / Creator: Bell, Lois. Date: 1940. Contents: 201 p. ; 19 cm. Publisher: Sydney : N.S.W. Bookstall, 1940',
+    title: '"Mother alone" by Lois Bell',
+    url: 'https://bit.ly/2kknST8',
     button: '16',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_1867-1-714x1024.png',
   },
   {
     // 19
@@ -160,6 +198,8 @@ const bookData = [
       '"Feminist figure girl: look hot while you fight the patriarchy" by Lianne McTavish',
     url: 'https://bit.ly/32YKtWB',
     button: '17',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190819_141710-final-686x1024.png',
   },
   {
     // 20
@@ -168,6 +208,8 @@ const bookData = [
     title: '"Private novelist: fiction" by Nell Zink',
     url: 'https://bit.ly/2pZEulR',
     button: '18',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190823_141849-final-687x1024.png',
   },
   {
     // 21
@@ -176,6 +218,8 @@ const bookData = [
     title: '"Daemon voices: essays on storytelling" by Philip Pullman',
     url: 'https://bit.ly/2JyGCaT',
     button: '21',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190823_142126-final-690x1024.png',
   },
   {
     // 22
@@ -184,6 +228,8 @@ const bookData = [
     title: '"Release the bats: writing your way out of it" by DBC Pierre',
     url: 'https://bit.ly/2WqPchp',
     button: '22',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190823_143145-final-652x1024.png',
   },
   {
     // 23
@@ -192,6 +238,8 @@ const bookData = [
     title: '"We’re all going to die" by Dr. Leah Kaminsky',
     url: 'https://bit.ly/2JxJnJE',
     button: '23',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190823_143240-final-674x1024.png',
   },
   {
     // 24
@@ -200,6 +248,8 @@ const bookData = [
     title: '"Not a scientist" by Dave Levitan',
     url: 'https://bit.ly/2PytshZ',
     button: '24',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190823_143317-final-697x1024.png',
   },
   {
     // 25
@@ -208,6 +258,8 @@ const bookData = [
     title: '"Theories of everything" by Frank Close',
     url: 'https://bit.ly/2q0Y5lw',
     button: '25',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190823_143750-final-743x1024.png',
   },
   {
     // 26
@@ -216,6 +268,8 @@ const bookData = [
     title: '"Truth" by Simon Blackburn',
     url: 'https://bit.ly/2BWy2hX',
     button: '26',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190823_143805-final-701x1024.png',
   },
   {
     // 27
@@ -224,6 +278,8 @@ const bookData = [
     title: '"The age of sharing" by Nicholas A. John',
     url: 'https://bit.ly/2WqS8dN',
     button: '27',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190823_144026-final-638x1024.png',
   },
   {
     // 28
@@ -232,6 +288,8 @@ const bookData = [
     title: '"This is Dalí" by Catherine Ingram',
     url: 'https://bit.ly/2WtGcbk',
     button: '28',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190829_113613-final-801x1024.png',
   },
   {
     // 29
@@ -240,6 +298,8 @@ const bookData = [
     title: '"The T-shirt book" by Charlotte Brunel',
     url: 'https://bit.ly/2qOjZJ1',
     button: 'D7',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190829_114527-final-773x1024.png',
   },
   {
     // 30
@@ -248,6 +308,8 @@ const bookData = [
     title: '"Streamflow measurement" by Reginald W. Herschy',
     url: 'https://bit.ly/36iz6uL',
     button: 'D6',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190829_115653-final-674x1024.png',
   },
   {
     // 31
@@ -256,6 +318,8 @@ const bookData = [
     title: '"How to look at bridges" by Colin O\'Connor',
     url: 'https://bit.ly/31Ra6Hu',
     button: '31',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190829_115905-final-686x1024.png',
   },
   {
     // 32
@@ -264,6 +328,8 @@ const bookData = [
     title: '"100 nasty women of history" by Jewell, Hannah',
     url: 'https://bit.ly/2BSWnFk',
     button: 'D5',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190902_144623-final-723x1024.png',
   },
   {
     // 33
@@ -273,6 +339,8 @@ const bookData = [
       '"Twitter: social communication in the Twitter age" by Dhiraj Murthy',
     url: 'https://bit.ly/2NptQfX',
     button: 'D4',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190902_144715-final-716x1024.png',
   },
   {
     // 34
@@ -281,6 +349,8 @@ const bookData = [
     title: '"Bookbinding" by Franziska Morlok, Miriam Waszelewski',
     url: 'https://bit.ly/36iEXAf',
     button: 'D3',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190903_103825-final-769x1024.png',
   },
   {
     // 35
@@ -289,6 +359,8 @@ const bookData = [
     title: '"Talking to my country" by Stan Grant',
     url: 'https://bit.ly/2BWH3rA',
     button: 'C6',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190903_104053-final-604x1024.png',
   },
   {
     // 36
@@ -297,6 +369,8 @@ const bookData = [
     title: '"First, we make the beast beautiful" by Sarah Wilson',
     url: 'https://bit.ly/2WmlQka',
     button: 'D2',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190903_104328-final-772x1024.png',
   },
   {
     // 37
@@ -305,6 +379,8 @@ const bookData = [
     title: '"Lost libraries" by Abigail Reynolds',
     url: 'https://bit.ly/34esmfy',
     button: '35',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190903_105334-final-802x1024.png',
   },
   {
     // 38
@@ -313,6 +389,8 @@ const bookData = [
     title: '"We are the end" by Gonzalo C. Garcia',
     url: 'https://bit.ly/36krxU7',
     button: 'D1',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190903_105610-final-744x1024.png',
   },
   {
     // 39
@@ -322,6 +400,8 @@ const bookData = [
       '"What we think about when we think about soccer" by Simon Critchley',
     url: 'https://bit.ly/31YzdIq',
     button: 'C3',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190903_105848-final-628x1024.png',
   },
 
   {
@@ -331,6 +411,8 @@ const bookData = [
     title: '"Ed vs. Yummy fur" by Brian Evenson',
     url: 'https://bit.ly/2BSZP2T',
     button: '32',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_5364-1-726x1024.png',
   },
   {
     // 41
@@ -339,6 +421,8 @@ const bookData = [
     title: '"Trees unafraid" by Rita F. Snowden',
     url: 'https://bit.ly/36j6SQw',
     button: '37',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_8702-1-703x1024.png',
   },
   {
     // 42
@@ -347,6 +431,8 @@ const bookData = [
     title: '"Trust: how we lost it and how to get it back" by Anthony Seldon',
     url: 'https://bit.ly/2q16RQu',
     button: 'B1',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_8791-1-650x1024.png',
   },
   {
     // 43
@@ -355,6 +441,8 @@ const bookData = [
     title: '"And did he stop and speak to you?" by G. B. Stern',
     url: 'https://bit.ly/2ovqWhx',
     button: '33',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_8797-1-618x1024.png',
   },
 
   {
@@ -364,6 +452,8 @@ const bookData = [
     title: '"Take off your shoes" by L.B. Grope',
     url: 'https://bit.ly/2BVQBTx',
     button: '34',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_8701-1-650x1024.png',
   },
   {
     // 45
@@ -372,6 +462,8 @@ const bookData = [
     title: '"See me, feel me, touch me, heal me" by Jonny Star',
     url: 'https://bit.ly/36j4OI1',
     button: 'C1',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190823_145302-final-755x1024.png',
   },
   {
     // 46
@@ -380,6 +472,8 @@ const bookData = [
     title: '"She died a lady" by Carter Dickson',
     url: 'https://bit.ly/32hflk0',
     button: 'B5',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_20190812_140630-1-640x1024.png',
   },
   {
     // 47
@@ -388,6 +482,8 @@ const bookData = [
     title: '"The reader is warned" by Carter Dickson',
     url: 'https://bit.ly/34A6N9s',
     button: 'B4',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_0226-1-648x1024.png',
   },
   {
     // 48
@@ -396,6 +492,8 @@ const bookData = [
     title: '"100,000 whys: a trip around the room" by M. Ilin',
     url: 'https://bit.ly/33kS561',
     button: 'B3',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/-655x1024.png',
   },
   {
     // 49
@@ -404,6 +502,8 @@ const bookData = [
     title: '"Why it does not have to be in focus" by Jackie Higgins',
     url: 'https://bit.ly/33n83MP',
     button: 'B2',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_5369-1-730x1024.png',
   },
   {
     // 50
@@ -412,6 +512,8 @@ const bookData = [
     title: '"Kiss kiss" by Roald Dahl',
     url: 'https://bit.ly/2NILdZn',
     button: 'C5',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_0210-631x1024.png',
   },
   {
     // 51
@@ -420,6 +522,8 @@ const bookData = [
     title: '"The dud avocado" by Elaine Dundy',
     url: 'https://bit.ly/2CdyPvg',
     button: 'C4',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_0227-1-643x1024.png',
   },
   {
     // 52
@@ -428,6 +532,8 @@ const bookData = [
     title: '"The pumpkin eater" by Penelope Mortimer',
     url: 'https://bit.ly/33jv5UM',
     button: 'C2',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_0206-634x1024.png',
   },
   {
     // 53
@@ -436,6 +542,8 @@ const bookData = [
     title: '"Magic made easy: an introduction to conjuring" by Carl March',
     url: 'https://bit.ly/34AoVQw',
     button: '38',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_0137-792x1024.png',
   },
   {
     // 54
@@ -444,6 +552,8 @@ const bookData = [
     title: '"Just so stories: for little children" by Rudyard Kipling',
     url: 'https://bit.ly/2PQHPhW',
     button: 'C7',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_0104-779x1024.png',
   },
   {
     // 55
@@ -452,6 +562,8 @@ const bookData = [
     title: '"How to use the library" by The Public Library of New South Wales',
     url: 'https://bit.ly/36EHRzl',
     button: '36',
+    image:
+      'https://newselfwales.dxlab.sl.nsw.gov.au/app/uploads/sites/3/2019/10/IMG_0012-735x1024.png',
   },
 ];
 
