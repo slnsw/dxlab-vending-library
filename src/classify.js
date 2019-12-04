@@ -7,7 +7,10 @@ const classify = (content) => {
   bookData.forEach((book, i) => {
     // console.log(`adding dataset ${i}`);
     classifier.addDocument(
-      book.text.slice(Math.floor(Math.random() * 100), 140),
+      // book.text.slice(Math.floor(Math.random() * 100), 140),
+      // book.text.slice(0, 190),
+      book.text,
+      // book.title,
       i,
     );
   });
