@@ -2,7 +2,7 @@
 
 import initTwit from '../src/initTwit';
 
-import { handleTweet } from '../src/app2';
+import { handleTweet } from '../src/app';
 
 const users = [];
 
@@ -184,7 +184,7 @@ users[17] = {
  * -------------------------------------------------------------------------- */
 
 describe('Set up Twitter connection and classify content', async () => {
-  const twit = await initTwit();
+  const twit = await initTwit({ testing: true });
 
   // await handleTweet(twit, users[0], '#dxtest');
 

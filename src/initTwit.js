@@ -1,9 +1,11 @@
 import Twit from 'twit';
 
+import { handleTweet } from './app';
+
 require('dotenv').config();
 
-const initTwit = () => {
-  return new Promise((resolve, reject) => {
+const initTwit = ({ testing = false } = {}) => {
+  return new Promise((resolve) => {
     const T = new Twit({
       consumer_key: process.env.CONSUMER_KEY,
       consumer_secret: process.env.CONSUMER_SECRET,
@@ -47,9 +49,11 @@ const initTwit = () => {
     stream.on('limit', (limitMessage) => {
       console.log(`**LIMIT MSG** ${limitMessage}`);
     });
+    if (!testing) {
+      stream.on('tweet', (tweet) => handleTweet(T, tweet, hashTag, true));
+    }
   });
 
-  // stream.on('tweet', (tweet) => handleTweet(tweet, true));
   // stream.on('tweet', (tweet) => callback(T, tweet));
 };
 

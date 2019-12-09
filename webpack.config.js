@@ -11,34 +11,29 @@ module.exports = {
   entry: [
     'babel-polyfill',
     'webpack/hot/poll?1000',
-    path.join(__dirname, 'src/app.js')
+    path.join(__dirname, 'src/server.js'),
   ],
   target: 'node',
-  externals: [nodeExternals(
-    {
-      whitelist: ['webpack/hot/poll?1000']
-    }
-  )],
+  externals: [
+    nodeExternals({
+      whitelist: ['webpack/hot/poll?1000'],
+    }),
+  ],
   output: {
     libraryTarget: 'commonjs',
     path: path.join(__dirname, 'build'),
-    filename: 'app.js', // this should match the first part of function handler in serverless.yml
+    filename: 'server.js', // this should match the first part of function handler in serverless.yml
   },
   module: {
     loaders: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: [
-          'babel-loader',
-          'eslint-loader'
-        ]
-      }
-    ]
+        loaders: ['babel-loader', 'eslint-loader'],
+      },
+    ],
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  plugins: [new webpack.HotModuleReplacementPlugin()],
 };
 
 // module.exports = {

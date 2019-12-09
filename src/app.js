@@ -1,175 +1,126 @@
-import Twit from 'twit';
-// import natural from 'natural';
-import NaturalSynaptic from 'natural-synaptic';
+import axios from 'axios';
+import classify from '../src/classify';
 
 import bookData from './bookData';
 
-require('dotenv').config();
-
-// console.log(bookData.length);
-
-// connect to twitter
-const T = new Twit({
-  consumer_key: process.env.CONSUMER_KEY,
-  consumer_secret: process.env.CONSUMER_SECRET,
-  access_token: process.env.ACCESS_TOKEN,
-  access_token_secret: process.env.ACCESS_TOKEN_SECRET,
-  timeout_ms: 60 * 1000, // optional HTTP request timeout to apply to all requests.
-});
-
-// get ready to do some text classification
-// const classifier = new NaturalSynaptic();
-
-const neuralNetFilename = 'neuralNet.json';
-
-NaturalSynaptic.load(neuralNetFilename, (err, classifier) => {
-  if (err) {
-    console.log(err);
-  }
-
-  // twitter params (from .env file)
-  const twitterHandle = `@${process.env.TWITTER_HANDLE}`;
-  const hashTag = process.env.HASHTAG;
-
-  // let rowName;
-  let rowNum;
-  // let column;
-  let clss;
-
-  // /////////////////////////////////////////////////////////////////////////
-
-  // keep an eye out for people tweeting at us
-  const stream = T.stream('statuses/filter', { track: twitterHandle });
-
+export const handleTweet = async (T, tweet, hashTag, respond = false) => {
   console.log('--------------------------------------------------');
-  console.log(`TWITTER_HANDLE: ${twitterHandle}`);
-  console.log(`HASHTAG: ${hashTag}`);
-  console.log('--------------------------------------------------');
+  console.log(`tweet ${Date.now()}`);
 
-  // set up some connection monitoring
-  stream.on('connect', () => {
-    console.log(`Connection requested....${Date.now()}`);
-  });
-  stream.on('disconnect', (disconnectMessage) => {
-    console.log(`_x_x_ disconnect _x_x_ ${disconnectMessage}`);
-  });
-  stream.on('connected', () => {
-    console.log(`CONNECTED! ${Date.now()}`);
-  });
-  stream.on('reconnect', () => {
-    console.log(`...re-connected ${Date.now()}`);
-  });
-  stream.on('warning', (warning) => {
-    console.log(`### WARNING! ### ${warning}`);
-  });
-  stream.on('limit', (limitMessage) => {
-    console.log(`**LIMIT MSG** ${limitMessage}`);
-  });
+  // let clss;
 
-  // /////////////////////////////////////////////////////////////////////////
+  // check it isn't a re-tweet and does have the correct hash tag
+  if (tweet.text.substring(0, 2) !== 'RT' && tweet.text.includes(hashTag)) {
+    // log incoming tweet
+    console.log(`ACTION: ${tweet.text}`);
 
-  // we got one!
-  stream.on('tweet', (tweet) => handleTweet(tweet, true));
+    // get the user ID (as string)
+    const userId = tweet.user.id_str; // for testing: Math.floor(Math.random() * 100000000) + 10000000;
+    console.log('user_id', userId);
 
-  function handleTweet(tweet, respond) {
-    console.log('--------------------------------------------------');
-    console.log(`tweet ${Date.now()}`);
+    const tweetId = tweet.id_str;
+    // console.log(`Tweet ID: ${tweetId}`);
 
-    // check it isn't a re-tweet and does have the correct hash tag
-    if (tweet.text.substring(0, 2) !== 'RT' && tweet.text.includes(hashTag)) {
-      // log incoming tweet
-      console.log(`ACTION: ${tweet.text}`);
+    try {
+      const { data } = await T.get('statuses/user_timeline', {
+        user_id: userId,
+        count: 40,
+      });
 
-      // get the user ID (as string)
-      const uid = tweet.user.id_str;
+      const l = data.length;
+      console.log(`Asked for 40 tweets and got: ${l}`);
 
-      const tweetId = tweet.id_str;
-      console.log(`Tweet ID: ${tweetId}`);
+      let trainingTweets = '';
+      let result = null;
 
-      // now get 40 of that user's tweets and classify them!
-      T.get('statuses/user_timeline', { user_id: uid, count: 40 })
-        .catch((err) => {
-          console.log('caught error', err.stack);
-        })
-        .then((result) => {
-          // `result` is an Object with keys "data" and "resp".
-
-          const data = result.data;
-          const l = data.length;
-          console.log(`Asked for 40 tweets and got: ${l}`);
-          let twts = '';
-          if (l > 1) {
-            /* eslint-disable */
-            for (let i = 1; i < l; i++) {
-              // skip first tweet as it is the request for suggestion
-              if (Math.random() > 0.72) {
-                // randomly pick a subset of their previous tweets
-                twts += `${data[i].text} . `;
-              }
-            }
-            if (tweet.user.description) {
-              // add the user description for more text matching goodness
-              twts += tweet.user.description;
-            }
-            console.log(twts);
-
-            // now classify them
-            clss = classifier.classify(twts);
-            //          rowName = rowNames[clss];
-            //          rowNum = rowNums[clss];
-            console.log(clss);
-          } else {
-            // zero tweets (might be set to private) - pick something random
-            console.log('random selection... (private tweets?)');
-            rowNum = Math.floor(Math.random() * 7);
-            clss = subjects[rowNum];
-            rowName = rowNames[clss];
+      if (l > 1) {
+        data.forEach((d) => {
+          if (Math.random() > 0.72) {
+            // Randomly pick a subset of their previous tweets
+            trainingTweets += `${d.text} `;
           }
+        });
 
-          const shURL = bookData[clss].url; // shortURLs[btn];
-          const title = bookData[clss].title; // shortURLs[btn];
-          const btn = bookData[clss].button;
+        if (tweet.user.description) {
+          // add the user description for more text matching goodness
+          trainingTweets += tweet.user.description;
+        }
 
-          // we have several variantions in response to make the Bot seem less Bot-like.
-          const resps = {
-            0: `@${tweet.user.screen_name} your tweets suggest you might be interested in ${title}. Enter ${btn} on keypad. More: ${shURL}`,
-            1: `@${tweet.user.screen_name} based on your tweets, I think you might like ${title}. Press ${btn} on keypad. More: ${shURL}`,
-            2: `@${tweet.user.screen_name} we have analysed your tweets and think you are interested in ${title}. Type ${btn} on keypad. More: ${shURL}`,
-            3: `@${tweet.user.screen_name} from the look of your tweets you might be interested in ${title}. Enter ${btn} on keypad. More: ${shURL}`,
-            4: `@${tweet.user.screen_name} based on your previous tweets, you might be interested in ${title}. Press ${btn} on keypad. More: ${shURL}`,
-            5: `@${tweet.user.screen_name} from your previous tweets, you are probably interested in ${title}. Type ${btn} on keypad. More: ${shURL}`,
-          };
+        // now classify them
+        result = await classify(trainingTweets);
+      } else {
+        // zero tweets (might be set to private) - pick something random
+        console.log('random selection... (private tweets)');
+        result = Math.floor(Math.random() * bookData.length);
+      }
+      if (Math.random() > 0.66) {
+        // one third of the time give a random answer
+        console.log('answer randomised!');
+        result = Math.floor(Math.random() * bookData.length);
+      }
+      const book = bookData[result];
+      const { url, title, button } = book;
 
-          const respno = Math.floor(Math.random() * Object.keys(resps).length);
-          const resp = resps[respno];
+      // we have several variations in response to make the Bot seem less Bot-like.
+      const responses = {
+        0: `@${tweet.user.screen_name} your tweets suggest you might be interested in ${title}. Enter ${button} on keypad. More: ${url}`,
+        1: `@${tweet.user.screen_name} based on your tweets, I think you might like ${title}. Press ${button} on keypad. More: ${url}`,
+        2: `@${tweet.user.screen_name} we have analysed your tweets and think you are interested in ${title}. Type ${button} on keypad. More: ${url}`,
+        3: `@${tweet.user.screen_name} from the look of your tweets you might be interested in ${title}. Enter ${button} on keypad. More: ${url}`,
+        4: `@${tweet.user.screen_name} based on your previous tweets, you might be interested in ${title}. Press ${button} on keypad. More: ${url}`,
+        5: `@${tweet.user.screen_name} from your previous tweets, you are probably interested in ${title}. Type ${button} on keypad. More: ${url}`,
+      };
 
-          if (respond) {
+      const responseNum = Math.floor(
+        Math.random() * Object.keys(responses).length,
+      );
+      const response = responses[responseNum];
+
+      // return result;
+      if (respond) {
+        const image = bookData[result].image;
+
+        const imageData = await axios.get(image, {
+          responseType: 'arraybuffer',
+        });
+        const b64content = Buffer.from(imageData.data).toString('base64');
+
+        // console.log(b64content);
+
+        T.post('media/upload', { media_data: b64content }, (err, imgData) => {
+          if (err) {
+            console.log('ERROR:');
+            console.log(err);
+          } else {
             T.post(
               'statuses/update',
               {
-                status: resp,
+                status: response,
                 in_reply_to_status_id: tweetId,
+                media_ids: new Array(imgData.media_id_string),
               },
-              () => {
-                console.log(`REPLIED: ${resp}`);
-                console.log(`Length: ${resp.length} [${respno}]`);
+              (updateError) => {
+                if (updateError) {
+                  console.log('ERROR:');
+                  console.log(updateError);
+                } else {
+                  console.log(`REPLIED: ${response}`);
+                  console.log(`Length: ${response.length} [${responseNum}]`);
+                }
               },
             );
-          } else {
-            console.log(`WOULD HAVE REPLIED: ${resp}`);
           }
         });
-    } else {
-      console.log(
-        `DO NOT ACTION: ${tweet.text} FROM @${tweet.user.screen_name}`,
-      );
+      } else {
+        console.log(`WOULD HAVE REPLIED: ${response}`);
+      }
+      // });
+    } catch (error) {
+      console.log(error);
     }
+  } else {
+    console.log(`DO NOT ACTION: ${tweet.text} FROM @${tweet.user.screen_name}`);
   }
 
   // /* Setup Server for Now - otherwise it stays on the BUILDING state */
-
-  // const { createServer } = require('http');
-  // const server = createServer(() => {});
-
-  // server.listen(3000);
-});
+};
