@@ -1,7 +1,5 @@
 {
   "name": "dxlab-vending-library",
   "dotenv": ".env",
-  "files": [
-    ".env"
-  ]
+  "version": 1
 }
