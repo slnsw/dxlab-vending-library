@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node -r dotenv/config build/server.js",
     "dev": "webpack --watch & node-dev --no-notify --no-deps -r dotenv/config build/server.js",
-    "deploy": "now sh",
+    "deploy": "now",
     "build": "webpack --progress",
     "test": "jest --forceExit --runInBand",
     "test:watch": "CI=true node -r dotenv/config ./node_modules/.bin/jest --watch"
