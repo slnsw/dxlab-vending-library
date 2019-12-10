@@ -21,7 +21,7 @@ Each of the printed collection items has a short URL on it which links back to t
 ## Getting Started
 
 ```
-# We are using Node v10.16.3 ~~Make sure you are running Node 6.10!!! Or else bad things will happen.~~
+# We are using Node v10.16.3
 $ npm install
 $ Set up .env file (see below)
 $ npm run dev # Starts Webpack watch and node-dev
