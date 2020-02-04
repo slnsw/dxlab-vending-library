@@ -62,3 +62,9 @@ $ now rm dxlab-vending-library-YYYYYYYY # Remove old app
 $ now # Deploy new app
 $ now scale dxlab-vending-library-XXXXXXXX sfo 1 # Prevents instance from being FROZEN and makes sure only one is running (in SFO data centre)
 ```
+
+Have noticed recently (Feb 2020) that `now` can be a bit pesky when deploying:
+
+If it fails to deploy, and `now ls` shows no sign of a vending library instance, try again.
+If it fails to deploy, and `now ls` shows an instance with state `ERROR`, remove it with `now rm` and try again.
+If it deploys with an error of 'verification timed out' and `now ls` shows the instance with a scale of 0, trying `now scale [instance] sfo 1` seems to fail, where as `now scale [instance] 1` followed by `now scale [instance] sfo 1` and `now scale [instance] bru 0` seems to get us where we wanna be...

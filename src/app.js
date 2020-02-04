@@ -59,7 +59,9 @@ export const handleTweet = async (T, tweet, hashTag, respond = false) => {
         result = Math.floor(Math.random() * bookData.length);
       }
       const book = bookData[result];
-      const { url, title, button } = book;
+      // const { url, title, button } = book;
+      const { siteId, title, button } = book;
+      const url = `https://dxlab.sl.nsw.gov.au/off-the-shelf/book/${siteId}`;
 
       // we have several variations in response to make the Bot seem less Bot-like.
       const responses = {
